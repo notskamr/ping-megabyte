@@ -1,33 +1,20 @@
-# This is a basic workflow to help you get started with Actions
- 
-name:
-  First Cron Job
- 
-  # Controls when the workflow will run
+# .github/workflows/scheduled-builds.yml
+name: Trigger Site Rebuild on a CRON Schedule
 on:
-  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: "* * * * *"
- 
-      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    - cron: '* * * * *'
 jobs:
-  # This workflow contains a sing
   build:
-    name: Cron
+    name: Trigger Site Rebuild
     runs-on: ubuntu-latest
- 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Ping Notices
-        id: myRequest
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: "https://megabyte-website-backend.onrender.com/api/notices"
+      - name: cURL request notices
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/notices
       - name: Sleep for 30 seconds
         run: sleep 30s
         shell: bash
-      - name: Ping Resources
-        id: myRequest2
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: https://megabyte-website-backend.onrender.com/api/resources"
+      - name: cURL request resources
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/resources
