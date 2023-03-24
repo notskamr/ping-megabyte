@@ -1,5 +1,5 @@
 # .github/workflows/scheduled-builds.yml
-name: CRON Scheduler
+name: CRON Scheduler Render
 on:
   schedule:
     # Runs "at minute 55 past every hour" (see https://crontab.guru)
