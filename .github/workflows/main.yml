@@ -3,7 +3,7 @@ name: CRON Scheduler Render
 on:
   schedule:
     # Runs "at minute 55 past every hour" (see https://crontab.guru)
-    - cron: '* * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   build:
     name: Trigger Site Rebuild
@@ -18,3 +18,27 @@ jobs:
       - name: cURL request resources
         # Hit the webhook endpoint to rebuild  from the "main" branch
         run: curl https://megabyte-website-backend.onrender.com/api/resources
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+      - name: cURL request resources
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/resources
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+      - name: cURL request notices
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/notices
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+      - name: cURL request resources
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/resources
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+      - name: cURL request notices
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl https://megabyte-website-backend.onrender.com/api/notices
